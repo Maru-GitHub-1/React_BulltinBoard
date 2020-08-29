@@ -5,7 +5,7 @@ class Main extends React.Component {
 
   render() {
     return (
-      <main class="main-container">
+      <main className="main-container">
         <h1>Main in here</h1>
       </main>
     )

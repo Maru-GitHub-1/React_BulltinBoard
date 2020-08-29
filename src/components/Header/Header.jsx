@@ -5,8 +5,8 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header class="header">
-        <h1 class="logo"> Vue BulltenBoard </h1>
+      <header className="header">
+        <h1 className="logo"> Vue BulltenBoard </h1>
       </header>
     )
   }
