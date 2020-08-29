@@ -1,0 +1,14 @@
+.header {
+  background: rgb(85, 161, 113);
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  z-index: 1;
+}
+
+.logo {
+  color: #fff;
+  line-height: 60px;
+  padding-left: 10px;
+  margin: 0;
+}
