@@ -2,20 +2,25 @@ import React from 'react';
 import './Message.css';
 
 class Message extends React.Component {
-  constructor(props) {
-    super(props);
-
-
-  }
 
   render() {
     return(
       <div className="message">
-        <div className="message-date">{this.props.children}</div>
-        <p className="message-text">{this.props.children}</p>
+        <div className="message-date">{this.props.date}</div>
+        <p className="message-text">{this.props.body}</p>
       </div>
     )
   }
 }
+
+// const Message = (props) => {
+
+//   return (
+//     <div className="message">
+//       <div className="message-date">{props.date}</div>
+//       <p className="message-text">{props.body}</p>
+//     </div>
+//   )
+// }
 
 export default Message;
