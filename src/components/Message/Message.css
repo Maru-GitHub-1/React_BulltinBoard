@@ -1,0 +1,22 @@
+.massage {
+  border-bottom: 1px solid black;
+  min-height: 80px;
+  padding: 10px;
+}
+
+.message:hover {
+  background-color: #eee;
+}
+
+.message-date {
+  font-size: 0.8em;
+  color: #777;
+  text-align: right;
+}
+
+.message-text {
+  margin: 0;
+  margin-top: 5px;
+  /* これを入れると、改行が効くようになる */
+  white-space: pre-line;
+}
