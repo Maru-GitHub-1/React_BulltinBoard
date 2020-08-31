@@ -12,6 +12,7 @@ class TextBox extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.sendBodyToParent = this.sendBodyToParent.bind(this);
+    this.createMessage = this.createMessage.bind(this);
   }
 
   handleChange(event) {
@@ -29,13 +30,22 @@ class TextBox extends React.Component {
       return;
     }
 
+    const newMessage = this.createMessage();
+
     if (typeof this.props.onSubmit === 'function') {
-      this.props.onSubmit(body);
+      this.props.onSubmit(newMessage);
     }
 
     this.setState({
       body: ''
     })
+  }
+
+  createMessage() {
+    return {
+      date: new Date().toLocaleString(),
+      body: this.state.body
+    }
   }
 
   render() {

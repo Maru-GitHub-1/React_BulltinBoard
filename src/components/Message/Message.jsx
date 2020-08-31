@@ -13,14 +13,4 @@ class Message extends React.Component {
   }
 }
 
-// const Message = (props) => {
-
-//   return (
-//     <div className="message">
-//       <div className="message-date">{props.date}</div>
-//       <p className="message-text">{props.body}</p>
-//     </div>
-//   )
-// }
-
 export default Message;

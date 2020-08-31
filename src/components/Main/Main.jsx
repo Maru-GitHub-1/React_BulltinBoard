@@ -8,22 +8,32 @@ class Main extends React.Component {
     super(props);
 
     this.state = {
-      messages: [
-        {date: 'datedatedate', body: 'bodybodybody'},
-        {date: 'datedatedate', body: 'bodybodybody'},
-        {date: 'datedatedate', body: 'bodybodybody'},
-        {date: 'datedatedate', body: 'bodybodybody'},
-        {date: 'datedatedate', body: 'bodybodybody'},
-      ]
+      messages: []
     }
+    
+    this.addMessage = this.addMessage.bind(this);
+    this.reversedMessage = this.reversedMessage.bind(this);
+  }
+
+  addMessage(message) {
+    this.setState({
+      messages: [
+        ...this.state.messages,
+        message
+      ]
+    })
+  }
+
+  reversedMessage(messages) {
+    return messages.slice().reverse();
   }
 
   render() {
     return (
       <main className="main-container">
-        <TextBox />
+        <TextBox onSubmit={this.addMessage}/>
         <div className="devider"></div>
-          <MessageList messages={this.state.messages}/>
+          <MessageList messages={this.reversedMessage(this.state.messages)}/>
       </main>
     )
   }
