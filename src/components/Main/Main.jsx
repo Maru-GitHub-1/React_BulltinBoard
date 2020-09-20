@@ -2,6 +2,7 @@ import React from 'react';
 import TextBox from '../TextBox/TextBox';
 import MessageList from '../MessageList/MessageList';
 import MessageModel from '../../models/Message';
+import Spinner from '../Spinner/Spinner';
 import '../Main/Main.css';
 
 class Main extends React.Component {
@@ -9,7 +10,8 @@ class Main extends React.Component {
     super(props);
 
     this.state = {
-      messages: []
+      messages: [],
+      initialLoaded: false
     }
     
     this.addMessage = this.addMessage.bind(this);
@@ -19,7 +21,8 @@ class Main extends React.Component {
   async componentDidMount() {
     const messages = await this.fetchMessages();
     this.setState({
-      messages: messages
+      messages: messages,
+      initialLoaded: true
     })
   }
 
@@ -55,7 +58,13 @@ class Main extends React.Component {
       <main className="main-container">
         <TextBox onSubmit={this.addMessage}/>
         <div className="devider"></div>
-          <MessageList messages={this.sendReverseMessages(this.state.messages)}/>
+        <div>
+          { this.state.initialLoaded ? null : <Spinner />}
+        </div>
+        <p className="no-messages">
+          { this.state.messages.length === 0 && this.state.initialLoaded ? "データ0件" : null }
+        </p>
+        <MessageList messages={this.sendReverseMessages(this.state.messages)}/>
       </main>
     )
   }

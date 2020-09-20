@@ -8,3 +8,7 @@
 .devider {
   border-top: 10px solid #ccc;
 }
+
+.no-messages {
+  text-align: center;
+}
