@@ -9,7 +9,7 @@ class MessageList extends React.Component {
   }
 
   roopForItem() {
-    // propsの中のmessageを取得
+    // {message} -> propsの中のmessageを取得
     const { messages } = this.props;
     const messageList = messages.map((message, index) => {
       return (

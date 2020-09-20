@@ -17,8 +17,10 @@ class Button extends React.Component {
   render() {
     return(
       <button 
-        className="button-container"
-        onClick={this.onClickHundler}>
+        className={ this.props.clickable ? 'button-container' : 'button-container disabled'}
+        onClick={this.onClickHundler}
+        disabled={!this.props.clickable}
+      >
         {this.props.children}
       </button>
     )
