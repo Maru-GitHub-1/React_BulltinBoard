@@ -3,7 +3,7 @@ import TextBox from '../TextBox/TextBox';
 import MessageList from '../MessageList/MessageList';
 import MessageModel from '../../models/Message';
 import Spinner from '../Spinner/Spinner';
-import '../Main/Main.css';
+import '../Main/MessageView.css';
 
 class Main extends React.Component {
   constructor(props) {
