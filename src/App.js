@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import SideMenu from './components/SideMenu/SideMenu';
-import Main from './components/Main/Main'
+import MainView from './components/Main/MainView'
 
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
       <Header />
       <div className="app-flex">
         <SideMenu />
-        <Main />
+        <MainView />
       </div>
     </div>
   );
