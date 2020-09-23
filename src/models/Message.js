@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-import { dbMessages } from '../db';
+import { dbChannels } from '../db';
 
 class Message {
   constructor({ id, body, date}) {
@@ -21,7 +21,7 @@ class Message {
       date: firebase.firestore.FieldValue.serverTimestamp()
     };
 
-    const docRef = await dbMessages.add(postData);
+    const docRef = await dbChannels.add(postData);
     const snapShot = await docRef.get();
     const data = snapShot.data();
     const model = this.create(docRef.id, data);
@@ -38,7 +38,7 @@ class Message {
   }
 
   static async fetchMessages() {
-    const collection = await dbMessages.orderBy('date').get();
+    const collection = await dbChannels.orderBy('date').get();
     // emptyプロパティ -> コレクションが空
     if( collection.empty ) {
       return [];

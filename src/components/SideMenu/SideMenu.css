@@ -17,10 +17,16 @@
   border-bottom: 1px solid black;
   height: 40px;
   line-height: 40px;
+}
+
+.menu-list-title-link {
+  text-decoration: none;
+  display: block;
+  color: black;
   font-size: 0.8em;
 }
 
-.list-item:hover {
+.list-item:hover, .menu-list-title-link:hover, .active {
   background-color:  rgb(118, 118, 223);
   font-size: 1em;
   color: white;

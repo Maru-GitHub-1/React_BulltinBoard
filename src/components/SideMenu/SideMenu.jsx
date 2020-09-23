@@ -1,19 +1,48 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import ChannelModel from '../../models/Channels';
 import '../SideMenu/SideMenu.css';
 
 class SideMenu extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      menuDataList: []
+    }
+  }
+
+  componentDidMount() {
+    this.created();
+  }
+
+  async created () {
+    const channels = await ChannelModel.fetch();
+
+    this.setState({
+      menuDataList: channels
+    });
+  }
 
   render() {
+    const menuItems = this.state.menuDataList.map(item => {
+      return(
+      <li key={item.id} className="list-item">
+        <Link activeClassName="is-active" to={item.id} className="menu-list-title-link"
+        >
+          {item.name}
+        </Link>
+      </li>
+      )
+    });
+    
     return (
       <aside className="menu">
         <ul className="menu-list">
-          <li className="list-item">掲示板案内</li>
-          <li className="list-item">プロフィール</li>
-          <li className="list-item">ブックマーク</li>
-          <li className="list-item">設定</li>
+          {menuItems}
         </ul>
       </aside>
-    )
+    );
   };
 };
 
