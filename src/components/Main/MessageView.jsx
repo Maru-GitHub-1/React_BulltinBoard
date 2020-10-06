@@ -19,11 +19,18 @@ class Main extends React.Component {
   }
 
   async componentDidMount() {
-    const messages = await this.fetchMessages();
-    this.setState({
-      messages: messages,
-      initialLoaded: true
-    })
+    await this.fetchMessages();
+  }
+
+  async componentDidUpdate(prevProps) {
+    // 典型的な使い方(props を比較することを忘れないでください)
+    if (this.props.match.params.channelId !== prevProps.match.params.channelId) {
+      this.setState({
+        initialLoaded: false,
+        messages: []
+      })
+      await this.fetchMessages();
+    }
   }
 
   addMessage(message) {
@@ -36,16 +43,27 @@ class Main extends React.Component {
   }
 
   async fetchMessages() {
+    // (① console.log(this.props))
+    // matchの存在を確認
+    // matchでid取得
+    const params = this.props.match;
+
+    // idがnumberならparseintをする
+    const id = params.params.channelId;
+
     let messages = [];
     try {
-      messages = await MessageModel.fetchMessages();
+      messages = await MessageModel.fetchMessages(id);
     } catch (error) {
       // 読み込み失敗など、何かしらのエラーが発生したら
       // ユーザーにデータの取得が失敗したことを知らせる
       alert(error.message);
     }
 
-    return messages;
+    this.setState({
+      messages: messages,
+      initialLoaded: true
+    })
   }
 
   sendReverseMessages(messages) {
@@ -56,7 +74,10 @@ class Main extends React.Component {
   render() {
     return (
       <main className="main-container">
-        <TextBox onSubmit={this.addMessage}/>
+        <TextBox 
+          onSubmit={this.addMessage}
+          channelId={this.props.match.params.channelId}
+        />
         <div className="devider"></div>
         <div>
           { this.state.initialLoaded ? null : <Spinner />}

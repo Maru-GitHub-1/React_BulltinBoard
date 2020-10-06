@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import ChannelModel from '../../models/Channels';
 import '../SideMenu/SideMenu.css';
 
@@ -28,10 +28,10 @@ class SideMenu extends React.Component {
     const menuItems = this.state.menuDataList.map(item => {
       return(
       <li key={item.id} className="list-item">
-        <Link activeClassName="is-active" to={item.id} className="menu-list-title-link"
+        <NavLink activeClassName="is-active" exact to={item.id} className="menu-list-title-link"
         >
           {item.name}
-        </Link>
+        </NavLink>
       </li>
       )
     });

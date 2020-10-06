@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-import { dbChannels } from '../db';
+import { getMessagesInCollection } from '../db';
 
 class Message {
   constructor({ id, body, date}) {
@@ -8,9 +8,8 @@ class Message {
     this.date = date;
   }
 
-  static async save({ body }) {
+  static async save({ body, channelId }) {
     if( !body || !body.trim() ) {
-      console.log('1111111111111111')
       throw new Error('bodyはString型で1文字以上の入力が必要です');
     }
 
@@ -21,7 +20,7 @@ class Message {
       date: firebase.firestore.FieldValue.serverTimestamp()
     };
 
-    const docRef = await dbChannels.add(postData);
+    const docRef = await getMessagesInCollection(channelId).add(postData);
     const snapShot = await docRef.get();
     const data = snapShot.data();
     const model = this.create(docRef.id, data);
@@ -37,8 +36,8 @@ class Message {
     })
   }
 
-  static async fetchMessages() {
-    const collection = await dbChannels.orderBy('date').get();
+  static async fetchMessages(channelId) {
+    const collection = await getMessagesInCollection(channelId).orderBy('date').get();
     // emptyプロパティ -> コレクションが空
     if( collection.empty ) {
       return [];

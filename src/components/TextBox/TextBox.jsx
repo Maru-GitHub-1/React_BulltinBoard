@@ -24,9 +24,6 @@ class TextBox extends React.Component {
       // 変数名は[]でプロパティに
       [field]: event.target.value
     })
-    
-    // ↓なぜsetState一回遅れでconsoleが表示されるのかわからない
-    // console.log(this.state.body);
   }
 
   // firebaseとreq,resのやりとりをするため非同期式にした
@@ -43,7 +40,8 @@ class TextBox extends React.Component {
     })
     try {
       const newMessage = await MessageModel.save({
-        body: this.state.body
+        body: this.state.body,
+        channelId: this.props.channelId
       });
       if (typeof this.props.onSubmit === 'function') {
         this.props.onSubmit(newMessage);
@@ -59,23 +57,6 @@ class TextBox extends React.Component {
     this.setState({
       canPost: true
     })
-
-  //   const newMessage = this.createMessage();
-
-  //   if (typeof this.props.onSubmit === 'function') {
-  //     this.props.onSubmit(newMessage);
-  //   }
-
-  //   this.setState({
-  //     body: ''
-  //   })
-  // }
-  // MessageModel.saveのmodelインスタンスを使用するため不要
-  // createMessage() {
-  //   return {
-  //     date: new Date().toLocaleString(),
-  //     body: this.state.body
-  //   }
   }
 
   render() {

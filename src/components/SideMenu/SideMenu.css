@@ -26,7 +26,7 @@
   font-size: 0.8em;
 }
 
-.list-item:hover, .menu-list-title-link:hover, .active {
+.list-item:hover, .menu-list-title-link:hover, .is-active {
   background-color:  rgb(118, 118, 223); 
   font-size: 1em;
   color: white;

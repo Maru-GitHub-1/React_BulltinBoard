@@ -16,10 +16,7 @@ function App() {
       <div className="app-flex">
         <Router>
           <SideMenu />
-        </Router>
-        <Router>
           <Route path="/:channelId" exact component={MessageView} />
-          <Route path="*" exact component={MessageView} />
         </Router>
       </div>
     </div>
