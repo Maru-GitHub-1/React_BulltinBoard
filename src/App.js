@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux'
 import {
   HashRouter as Router,
   Route
@@ -10,6 +11,12 @@ import MessageView from './components/Main/MessageView'
 
 
 function App() {
+  const state = useSelector((state) => {
+    return state;
+  })
+
+  console.log(state)
+
   return (
     <div className="App">
       <Header />
