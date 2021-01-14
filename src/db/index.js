@@ -14,7 +14,7 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+// firebase.analytics();
 
 export const db = firebase.firestore();
 export const dbChannels = db.collection('channels');

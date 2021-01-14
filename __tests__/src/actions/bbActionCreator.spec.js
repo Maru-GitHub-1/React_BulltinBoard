@@ -1,6 +1,5 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import axios from 'axios';
 import {
   FETCH_CHANNELS_REQUEST,
   FETCH_CHANNELS_SUCCESS,
